@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            function printData() {
+                console.log(this.name)
+            }
+            let user = {
+                name : 'toolika'
+            }
+            Function.prototype.mybind = function () {
+                const context = this;
+                const arg = arguments;
+                return function(){
+                   
+                    context.apply(arg[0])
+                }
+            }
+           const printUser = printData.mybind(user);
+         printUser()
+        </script>
+    </head>
+    <body></body>
+</html>

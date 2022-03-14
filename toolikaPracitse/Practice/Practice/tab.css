@@ -1,0 +1,27 @@
+#tab1{
+    display: none;
+    border: 0.1vw solid black;
+    height: auto;
+    width: 80vw;
+  
+}
+#tab2{
+    display: none;
+    border: 0.1vw solid black;
+    height: auto;
+    width: 80vw;
+   
+}
+#tab3{
+    display: none;
+    border: 0.1vw solid black;
+    height: auto;
+    width: 80vw;
+   
+}
+button {
+    height: 5vw;
+    width:  20vw;
+    margin: 3vw;
+}
+

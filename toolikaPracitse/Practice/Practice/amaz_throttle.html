@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+let counter = 0;
+getData = () => {
+    console.log('<---------->', counter++)
+}
+makeThrottle =(f, d) => {
+  let  flag = true;
+return function()  {
+    const context = this;
+    const arg = arguments
+if(flag){
+    f.apply(context, arg)
+    flag = false;
+}
+setTimeout(()=> {flag = true}, d)
+}
+}
+const throttle = makeThrottle(getData , 300)
+// avoiding all events for certain period just executing first
+</script>
+</head>
+<body onresize="throttle()">
+</body>
+</html>

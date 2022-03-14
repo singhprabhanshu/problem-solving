@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            #star-background{
+                width: 1420px;
+                height: 1000px;
+                background: aqua;
+                display: flex;
+                flex-direction: row;
+                justify-content: center ;
+            
+           
+            }
+            #star{
+                background: gray;
+                margin: 1px;
+                height: 30px;
+                width: 30px;
+                border-radius: 50%;
+            }
+        </style>
+        <script>
+            const element =  document.querySelector('#star-background');
+            console.log(element)
+            class Star {
+                constructor(){
+                   this.addListeners() 
+                }
+                getStar = () => {
+                    return document.querySelector('#star-background').children; 
+            }
+            addListeners =() => {
+                // const star = this.getStar()
+                const star = document.querySelector('#star-background').children;
+                console.log(star)
+                for (const i in star ) {
+                
+                    star[i].addEventListener('click',()=> this.selectionHelper(i))
+                    star[i].addEventListener('mouseover',()=> this.selectionHelper(i))
+                }
+            }
+            selectionHelper =(idx) => {
+                const stars =  this.getStar()
+                console.log('this is id' ,idx)
+                for (const i in stars) {
+                  const value = stars[i].getAttribute("value")
+                  stars[i].style['background'] = i <= idx ? 'yellow': 'grey'
+                  
+                  
+               }
+            }
+
+            }
+          window.addEventListener('load', ()=> new Star())
+             // window.addEventListener("load", () => new Star());
+        </script>
+    </head>
+    <body>
+        <div id="star-background">
+            <button id="star" value="0"></button>
+            <button id="star" value="1" ></button>
+            <button id="star" value="2" ></button>
+            <button id="star" value="3"></button>
+            <button id="star" value="4"></button>
+        </div>
+    </body>
+</html>

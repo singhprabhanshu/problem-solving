@@ -1,0 +1,25 @@
+<!DOCKTYPE>
+<html>
+    <script>
+        let counter = 0;
+        function getData(){
+            console.log('called', counter++);
+        }
+       function  makethrottle(f, d){
+         let flag = true;
+        return function (){
+            let context = this;
+            let arg = arguments;
+            if(flag){
+                f.apply(context, arg)
+                flag = false;
+            }
+           
+            setTimeout(()=> {flag = true}, d)
+        }
+        }
+       const throttle = makethrottle(getData, 300) 
+    </script>
+    <body onresize="throttle()">
+    </body>
+</html>

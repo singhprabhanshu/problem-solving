@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            let name={
+                fistName: 'toolika'
+            }
+            let user ={
+                id: 1
+            }
+            function printId(){
+
+                console.log(this.id, this)
+            }
+            function print(surname){
+                console.log(this.fistName, surname);
+            }
+            Function.prototype.mybind = function(...args){
+                let context = this;
+                let params = args.slice(1);
+                return function(){
+                    context.apply(args[0], params);
+                }
+            }
+            Function.prototype.mycall = function(context, ...args) {
+  const fn = Symbol();
+  try {
+    context[fn] = this;
+    context[fn](...args);
+   } catch(e) {
+      // Turn primitive types into complex ones 1 -> Number, thanks to Mark Meyer for this.
+     context = new context.constructor(context);
+     context[fn] = this;
+     context[fn](...args);
+  }
+};
+Function.prototype.myapply = function(context, ...args) {
+  const fn = Symbol();
+  try {
+    context[fn] = this;
+    context[fn](...args);
+   } catch(e) {
+      // Turn primitive types into complex ones 1 -> Number, thanks to Mark Meyer for this.
+     context = new context.constructor(context);
+     context[fn] = this;
+     context[fn](...args);
+  }
+};
+            let printName = print.bind(name, 'srivastava');
+            printId.call(user);
+            printId.mycall(user);
+            printId.myapply(user);
+            printName();
+            let printMyName = print.mybind(name, 'lokeshJain');
+            printMyName();
+
+            </script>
+    </head>
+
+</html>

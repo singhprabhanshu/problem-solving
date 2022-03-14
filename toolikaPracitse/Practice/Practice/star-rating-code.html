@@ -1,0 +1,98 @@
+<html>
+
+    <style>
+        #star-div {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            background-color: aquamarine;
+        }
+        .star {
+            margin: 10;
+            height: 100px;
+            width: 100px;
+            background-color: gray;
+        }
+    </style>
+
+    <script>
+
+        class StarHelper {
+
+            static instance = null;
+
+            static getInstance() {
+                if (StarHelper.instance) {
+                    return StarHelper.instance;
+                } else {
+                    StarHelper.instance = new StarHelper ();
+                    return StarHelper.instance;
+                }
+            }
+
+            constructor() {
+                let colors;
+                try {
+                    const serializedColors = localStorage.getItem('colors');
+                    colors = JSON.parse(serializedColors);
+                } catch (e) {
+                    console.log(e)
+                }
+                this.colors = colors || [];
+                this.initColors();
+                this.addListeners();
+            }
+
+
+
+            get stars() {
+                return [ ...document.querySelector("#star-div").children ];
+            }
+
+            initColors() {
+                if (!this.colors.length) return;
+                for (const [idx, button] of this.stars.entries() ) button.style["background-color"] = this.colors[idx];
+            }
+
+            addListeners() {
+                for (const [idx, button] of this.stars.entries() ) {
+                    button.addEventListener('click', () => this.selectionHelper(idx));
+                    button.addEventListener('mouseover', () => this.selectionHelper(idx));
+                }
+            }
+
+            selectionHelper(idx) {
+                for (let [i, button] of this.stars.entries() ) button.style["background-color"] = i <= idx ? "gold" : "gray";
+            }
+
+            persistColors() {
+                const colors = [];
+                for (let [idx, button] of this.stars.entries() ) colors.push(button.style["background-color"]);
+                try {
+                    window.localStorage.setItem('colors', JSON.stringify(colors))
+                } catch (e) {
+                    console.log(e)
+                }
+            }
+
+        }
+
+        window.addEventListener("load", () => StarHelper.getInstance());
+        window.addEventListener("beforeunload", () => StarHelper.getInstance().persistColors());
+        
+    </script>
+
+    <body>
+        <div id="star-div" >
+            <button class="star"/>
+            <button class="star" />
+            <button class="star"/>
+            <button class="star" />
+            <button class="star" />
+        </div>
+    </body>
+
+</html>

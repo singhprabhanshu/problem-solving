@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <script>
+        let counter = 0;
+        function getData(){
+            console.log('called', counter++);
+        }
+       function  makeDebouce(f, d){
+         let timer;
+        return function (){
+            let context = this;
+            let arg = arguments;
+            clearTimeout(timer);
+          timer =   setTimeout(()=> {f.apply(context, arg)}, d)
+        }
+        }
+       const debounce = makeDebouce(getData, 300) 
+    </script>
+    <body>
+<input onkeyup="debounce()">
+    </body>
+</html>

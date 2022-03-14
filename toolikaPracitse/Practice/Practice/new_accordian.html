@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            class Accordian {
+                constructor () {
+                    this.getListOfChildren()
+                }
+                getListOfChildren =() => {
+                    const c = document.querySelector('.main')
+                    console.log(c)
+                }
+            }
+            window.addEventListener('load', ()=> new Accordian())
+        </script>
+    </head>
+    <body>
+        <div class="main">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+        </div>
+    </body>
+</html>

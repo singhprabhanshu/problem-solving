@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <script>
+        let counter = 0;
+        getData = () => {
+            console.log('<---------------->', counter++);
+        }
+        makeDebounce = (f, d) => {
+            let timer ;
+            return function() {
+                const context = this;
+                const args = arguments;
+                clearTimeout(timer);
+                timer = setTimeout(()=> f.apply(context, args), 300)
+            }
+        }
+        const debounce = makeDebounce(getData, 300)
+        // here i am delaying getData using debounce
+    </script>
+    </head>
+    <body>
+        <input onkeyup="debounce()"/>
+    </body>
+</html>
+

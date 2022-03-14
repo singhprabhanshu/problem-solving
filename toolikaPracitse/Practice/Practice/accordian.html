@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+          .accor{
+              background :rgb(207, 203, 203);
+              height: 30px;
+              width: 1400px;
+              margin-top: 10px;
+              padding: 10px;
+          }
+          .accor:hover{
+            background :rgb(133, 130, 130); 
+          }
+         
+         
+        </style>
+           <script>
+
+            </script>
+        <script>
+            class Accordian {
+                constructor () {
+                    this.addListners()
+                }
+                getList = () => {
+                    const children = document.querySelector('.main').children;
+                    return children
+                }
+                addListners = () => {
+                    const parent = this.getList();
+                    for(const i in parent){
+                        parent[i].addEventListener('click', ()=> this.handleClick(i))
+                    }
+                }
+                handleClick = (arg) => {
+                    const parent = this.getList();
+                    const firstP = parent[arg].firstElementChild;
+                    const currentClass = `.sub_para${arg}`
+                    // console.log(firstP.nextElementSibling.style.display )
+                    
+                    let para = document.querySelector(currentClass);
+                    let compStyles = window.getComputedStyle(para);
+                    if(para.style.display == 'none'){
+                        para.style.display = 'block';
+                    }
+                   else {
+                    para.style.display = 'none';
+                   }
+                }
+            }
+            window.addEventListener('load', ()=> new Accordian())
+           /* class Star {
+                constructor(){
+                   this.addListeners() 
+                }
+                getStar = () => {
+                    const child =  document.querySelector('.main').children; 
+                    console.log(child)
+            }
+            addListeners =() => {
+                // const star = this.getStar()
+                const star = document.querySelector('.main').children;
+                console.log(star)
+                for (const i in star ) {
+                
+                    star[i].addEventListener('click',()=> this.selectionHelper(i))
+                    star[i].addEventListener('mouseover',()=> this.selectionHelper(i))
+                }
+            }
+            selectionHelper =(idx) => {
+                const stars =  this.getStar()
+                console.log('this is id' ,idx)
+                for (const i in stars) {
+                  const value = stars[i].getAttribute("value")
+                  stars[i].style['background'] = i <= idx ? 'yellow': 'grey'
+                  
+                  
+               }
+            }
+
+            }
+          window.addEventListener('load', ()=> new Star())*/
+        </script>
+    </head>
+    <body>
+       <h1>Accordian Practice</h1>
+        <div class="main">
+        <div class="accor">
+            <p>Section A</p>
+            <p class="sub_para0" style="display: none;">This is section A</p>
+
+        </div>
+       
+        <div class="accor">
+            <p>Section B</p>
+            <p class="sub_para1" style="display: none;">This is section B</p>
+        </div>
+        <div class="accor">
+            <p>Section C</p>
+            <p class="sub_para2" style="display: none;">This is section C</p>
+        </div>
+        </div>
+    </body>
+</html>

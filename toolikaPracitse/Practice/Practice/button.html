@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+           
+         
+    function clickIncrement() {
+       let counter = Number(localStorage.getItem('counter')) || 0
+        counter = counter + 1;
+        localStorage.setItem('counter', counter)
+        document.querySelector('#increment_count').textContent = counter
+        
+    }
+       
+    function decremenet() {
+        let counter= Number(localStorage.getItem('counter')) || 0
+       
+
+        counter = counter - 1;
+        localStorage.setItem('counter', counter)
+        document.querySelector('#increment_count').textContent = counter
+    }
+            
+        </script>
+    </head>
+    <body>
+        <div id="button_group">
+             
+            <button id="forward" onclick="clickIncrement()"></button>
+            <button id="next" onclick="decremenet()"></button>
+            <p id="increment_count"></p>
+        </div>
+    </body>
+</html>
